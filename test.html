@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Comptes</title>
+    <!-- Inclusion de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fonction pour charger et afficher les comptes
+            function loadAccounts() {
+                $.ajax({
+                    url: 'http://localhost:3000/accounts', // URL de votre API
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(accounts) {
+                        // Construction d'une liste HTML avec les comptes
+                        var html = '<ul>';
+                        $.each(accounts, function(i, account) {
+                            html += '<li>ID: ' + account.id + ', Nom d\'utilisateur: ' + account.username + '</li>';
+                        });
+                        html += '</ul>';
+
+                        // Affichage des comptes dans la page
+                        $('#accounts').html(html);
+                    },
+                    error: function() {
+                        $('#accounts').html('<p>Erreur lors du chargement des comptes.</p>');
+                    }
+                });
+            }
+
+            // Appel de la fonction au chargement de la page
+            loadAccounts();
+        });
+    </script>
+</head>
+<body>
+    <h1>Liste des Comptes</h1>
+    <div id="accounts">
+        <!-- Les comptes seront affichés ici -->
+    </div>
+</body>
+</html>

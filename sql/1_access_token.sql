@@ -1,0 +1,7 @@
+CREATE TABLE `access_token` (
+  `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `id_account` BIGINT NOT NULL,
+  `access_token` VARCHAR(255) NOT NULL,
+  `refresh_token` VARCHAR(255) NOT NULL,
+  `date_added` DATETIME DEFAULT CURRENT_TIMESTAMP
+) CHARSET=utf8mb4;
